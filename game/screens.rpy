@@ -828,7 +828,50 @@ screen R_Status_screen:
     
     #Primary bar
     #Kitty's stats
-    if Ch_Focus == "Kitty":
+    #Rogue's Stats
+    if Ch_Focus == "Rogue":
+        add "images/BarBackdrop_R.png"
+        frame:  
+            style_group "stat_bar" 
+            xminimum 130       
+            background None
+            has vbox     
+            hbox:
+                imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [R_Love]")
+                bar range 100 value VariableValue("R_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
+            hbox:
+                imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [R_Lust]")
+                bar range 100 value VariableValue("R_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+        frame:
+            xminimum 130
+            xpos 130    
+            background None
+            has vbox
+            hbox:
+                imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [R_Obed]") #action NullAction("none")?
+                bar range 100 value VariableValue("R_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+            hbox:
+                imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [R_Addict]")
+                bar range 100 value VariableValue("R_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+        frame:
+            xminimum 130
+            xpos 260    
+            background None
+            has vbox
+            hbox:
+                imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [R_Inbt]")
+                bar range 100 value VariableValue("R_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+            hbox:
+                imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [R_Addictionrate]")
+                bar range 100 value VariableValue("R_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+        showif not Trigger:
+            imagebutton auto "images/Button_Rogue_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
+        showif config.developer:
+            imagebutton auto "images/Button_Rogue_%s.png" action ui.callsinnewcontext("RogueStats") xpos 730 ypos 5 focus
+
+        
+    #Kitty's stats
+    elif Ch_Focus == "Kitty":
         add "images/BarBackdrop_K.png"        
         frame:  
             style_group "stat_bar" 
@@ -837,10 +880,10 @@ screen R_Status_screen:
             has vbox     
             hbox:
                 imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [K_Love]")
-                bar range 100 value (K_Love/10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
+                bar range 100 value VariableValue("K_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
             hbox:
                 imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [K_Lust]")
-                bar range 100 value K_Lust xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                bar range 100 value VariableValue("K_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         frame:
             xminimum 130
             xpos 130    
@@ -848,10 +891,10 @@ screen R_Status_screen:
             has vbox
             hbox:
                 imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [K_Obed]")
-                bar range 100 value (K_Obed/10) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                bar range 100 value VariableValue("K_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
                 imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [K_Addict]")
-                bar range 100 value K_Addict xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                bar range 100 value VariableValue("K_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
         frame:
             xminimum 130
             xpos 260    
@@ -859,12 +902,11 @@ screen R_Status_screen:
             has vbox
             hbox:
                 imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [K_Inbt]")
-                bar range 100 value (K_Inbt/10) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                bar range 100 value VariableValue("K_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
             hbox:
                 imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiciton Rate: [K_Addictionrate]")
-                bar range 100 value (K_Addictionrate*10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                bar range 100 value VariableValue("K_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         showif not Trigger:
-#            imagebutton auto "images/Button_Emma_%s.png" action ui.callsinnewcontext("Shift_Focus", "Emma") xpos 690 ypos 5 focus_mask True
             imagebutton auto "images/Button_Kitty_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
         showif config.developer:
             imagebutton auto "images/Button_Kitty_%s.png" action ui.callsinnewcontext("KittyStats") xpos 730 ypos 5 focus
@@ -878,10 +920,10 @@ screen R_Status_screen:
             has vbox     
             hbox:
                 imagebutton idle "images/iconlove.png" hover "images/iconlove.png" action NullAction() hovered tt.Action("Love: [E_Love]")
-                bar range 100 value (E_Love/10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
+                bar range 100 value VariableValue("E_Love", 1000) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0 
             hbox:
                 imagebutton idle "images/iconlust.png" hover "images/iconlust.png" action NullAction() hovered tt.Action("Lust: [E_Lust]")
-                bar range 100 value E_Lust xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                bar range 100 value VariableValue("E_Lust", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
         frame:
             xminimum 130
             xpos 130    
@@ -889,10 +931,10 @@ screen R_Status_screen:
             has vbox
             hbox:
                 imagebutton idle "images/iconobed.png" hover "images/iconobed.png" action NullAction() hovered tt.Action("Obedience: [E_Obed]") #action NullAction("none")?
-                bar range 100 value (E_Obed/10) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
+                bar range 100 value VariableValue("E_Obed", 1000) xmaximum 100 left_bar "images/barfullO.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0
             hbox:
                 imagebutton idle "images/iconaddict.png" hover "images/iconaddict.png" action NullAction() hovered tt.Action("Addiction: [E_Addict]")
-                bar range 100 value E_Addict xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
+                bar range 100 value VariableValue("E_Addict", 100) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 6 thumb None thumb_offset 0
         frame:
             xminimum 130
             xpos 260    
@@ -900,13 +942,12 @@ screen R_Status_screen:
             has vbox
             hbox:
                 imagebutton idle "images/iconinbt.png" hover "images/iconinbt.png" action NullAction() hovered tt.Action("Inhibitions: [E_Inbt]")
-                bar range 100 value (E_Inbt/10) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                bar range 100 value VariableValue("E_Inbt", 1000) xmaximum 100 left_bar "images/barfulli.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
             hbox:
                 imagebutton idle "images/iconaddictrate.png" hover "images/iconaddictrate.png" action NullAction() hovered tt.Action("Addiction Rate: [E_Addictionrate]")
-                bar range 100 value (E_Addictionrate*10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
+                bar range 100 value VariableValue("E_Addictionrate", 10) xmaximum 100 left_bar "images/barfull.png" right_bar "images/barempty.png" left_gutter 3 right_gutter 5 thumb None thumb_offset 0        
         showif not Trigger:
             imagebutton auto "images/Button_Emma_%s.png" action ShowTransient("Test_Focus_Map") xpos 690 ypos 5 focus_mask True #xpos 690 ypos 5 
-#            imagebutton auto "images/Button_Rogue_%s.png" action ui.callsinnewcontext("Shift_Focus", "Rogue") xpos 690 ypos 5 focus_mask True
         showif config.developer:
             imagebutton auto "images/Button_Emma_%s.png" action ui.callsinnewcontext("EmmaStats") xpos 730 ypos 5 focus
     elif Ch_Focus == "Laura":
